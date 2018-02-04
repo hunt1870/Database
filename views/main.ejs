@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+         crossorigin="anonymous">
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">DATA</a>
+            </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/main/<%= currentUser._id%>/edit">Update</a>
+                    </li>
+                <% if(currentUser){ %>
+                        <li>
+                            <a>Signed in as
+                                <%= currentUser.username %>
+                                    <i class="fa fa-user-circle" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/logout">Logout
+                                <i class="fa fa-sign-out"></i>
+                            </a>
+                        </li>
+                        <% } %>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
+            <% if(error && error.length>0){ %>
+                <div class="alert alert-danger" role="alert">
+                    <%= error %>
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                </div>
+                <% } %>
+                    <% if(success && success.length>0){ %>
+                        <div class="alert alert-success" role="alert">
+                            <%= success %>
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                                <% } %>
+                        </div>
+        </div>
+        <div class ="container">
+        <h1 style="font-size: 60px" class="bg-warning">
+            WELCOME 
+            <span class="badge badge-secondary"><%= currentUser.username %></span>
+        </h1>
+        <p style="font-size:35px" class="bg-info">Check out MY DATABASE<span class="glyphicon glyphicon-hand-down" aria-hidden="true"></span></p>
+        <br/><br/><br/><br/>
+        <table class="table table-hover">
+            <tr>
+            <th>Name</th>
+            <th>Roll No</th>
+            <th>City</th>
+            <th>Phone No</th>            
+            </tr>
+            <% var i; %>
+            <% for(i=0;i<user.length;i++) { %>
+            <tr>
+                <td><%= user[i].username %></td>
+                <td><%= user[i].roll_no %></td> 
+                <td><%= user[i].city %></td>
+                <td><%= user[i].phone_no %></td>                
+            </tr>
+            <% } %>
+        </table>
+        </div>
+    </body>
+</html>
